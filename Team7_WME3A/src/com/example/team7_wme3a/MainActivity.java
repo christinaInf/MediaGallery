@@ -1,5 +1,7 @@
 package com.example.team7_wme3a;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -13,6 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.TextView;
 
 public class MainActivity extends FragmentActivity {
@@ -116,11 +120,18 @@ public class MainActivity extends FragmentActivity {
 				Bundle savedInstanceState) {
 			// Create a new TextView and set its text to the fragment's section
 			// number argument value.
+			/*
 			TextView textView = new TextView(getActivity());
 			textView.setGravity(Gravity.CENTER);
 			textView.setText(Integer.toString(getArguments().getInt(
 					ARG_SECTION_NUMBER)));
 			return textView;
+			*/
+			GridView imageView = new GridView(getActivity());
+			ArrayList<View> images = new ArrayList<View>();
+			images.add(getActivity().findViewById(R.layout.grid_element));
+			imageView.setAdapter(new ImageAdapter(getActivity()));
+			return imageView;
 		}
 	}
 
