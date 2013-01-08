@@ -12,15 +12,14 @@ public class ImageAdapter extends BaseAdapter {
  
     // Keep all Images in array
     public Integer[] mThumbIds = {
-            R.drawable.amsterdam, R.drawable.arena, R.drawable.beeren, 
+            R.drawable.amsterdam, R.drawable.arena, R.drawable.beeren/*, 
             R.drawable.bilbao, R.drawable.bohnen, R.drawable.boule,
-            R.drawable.buschberg, R.drawable.catedraldelbuenpastor, 
+            R.drawable.buschberg, R.drawable.catedraldelbuenpastor,
             R.drawable.donostia, R.drawable.drachen, R.drawable.eis, 
             R.drawable.eisbrocken, R.drawable.eisholz, R.drawable.falke, 
             R.drawable.feld, R.drawable.feuerbluete, R.drawable.fractions, 
             R.drawable.frosch, R.drawable.fruehling, R.drawable.gang, 
             R.drawable.gridlayout, R.drawable.gruen, R.drawable.hdr, 
-            /*
             R.drawable.lampe, R.drawable.leben, R.drawable.leckerbissen, 
             R.drawable.lndw, R.drawable.mainframe, R.drawable.mohn, 
             R.drawable.morninggold, R.drawable.open, R.drawable.output, 
@@ -57,7 +56,7 @@ public class ImageAdapter extends BaseAdapter {
         ImageView imageView = new ImageView(mContext);
         imageView.setImageResource(mThumbIds[position]);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imageView.setLayoutParams(new GridView.LayoutParams(70, 70));
+        imageView.setLayoutParams(new GridView.LayoutParams(150, 150));
         return imageView;
     }
  

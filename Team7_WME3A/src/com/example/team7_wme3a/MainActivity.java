@@ -2,6 +2,7 @@ package com.example.team7_wme3a;
 
 import java.util.ArrayList;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +16,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -30,6 +33,7 @@ public class MainActivity extends FragmentActivity {
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
 	SectionsPagerAdapter mSectionsPagerAdapter;
+	FilterDialog dialog;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
@@ -49,6 +53,7 @@ public class MainActivity extends FragmentActivity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		dialog = new FilterDialog(this);
 
 	}
 
@@ -57,6 +62,18 @@ public class MainActivity extends FragmentActivity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    // Handle item selection
+	    switch (item.getItemId()) {
+	    case R.id.menu_settings:
+			dialog.show();
+	        return true;
+	    default:
+	        return super.onOptionsItemSelected(item);
+	    }
 	}
 
 	/**
@@ -118,19 +135,23 @@ public class MainActivity extends FragmentActivity {
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			// Create a new TextView and set its text to the fragment's section
-			// number argument value.
-			/*
-			TextView textView = new TextView(getActivity());
-			textView.setGravity(Gravity.CENTER);
-			textView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
-			return textView;
-			*/
+
 			GridView imageView = new GridView(getActivity());
-			ArrayList<View> images = new ArrayList<View>();
-			images.add(getActivity().findViewById(R.layout.grid_element));
 			imageView.setAdapter(new ImageAdapter(getActivity()));
+			
+	        imageView.setOnItemClickListener(new OnItemClickListener() {
+	            @Override
+	            public void onItemClick(AdapterView<?> parent, View v,
+	                    int position, long id) {
+	 
+	                // Sending image id to FullScreenActivity
+	                Intent i = new Intent(getActivity().getApplicationContext(), ViewFullScreenActivity.class);
+	                // passing array index
+	                i.putExtra("id", position);
+	                startActivity(i);
+	            }
+	        });
+			
 			return imageView;
 		}
 	}
