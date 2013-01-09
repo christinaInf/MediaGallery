@@ -7,5 +7,12 @@
     <ImageView android:id="@+id/fullscreen_image"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"/>
+
+    <ExpandableListView
+        android:id="@+id/expandableListView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" >
+    </ExpandableListView>
  
 </LinearLayout>

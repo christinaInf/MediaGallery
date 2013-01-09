@@ -20,10 +20,16 @@ public class FilterDialog extends Dialog implements android.view.View.OnClickLis
 		setTitle("Filter");
 		Button ok = (Button) findViewById(R.id.ok);
 		ok.setOnClickListener(this);
+		Button cancel = (Button) findViewById(R.id.cancel);
+		cancel.setOnClickListener(this);
 	}
 	
 	public void onClick(View v) {
-		String filter = getText(R.id.filterText);
+		if(v.getId()==R.id.ok) {
+			String filter = getText(R.id.filterText);
+			
+		}
+		dismiss();
 	}
 	
 	private String getText(int id) {
