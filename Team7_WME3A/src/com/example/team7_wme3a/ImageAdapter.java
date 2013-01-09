@@ -10,7 +10,7 @@ import android.widget.ImageView;
 public class ImageAdapter extends BaseAdapter {
     private Context mContext;
  
-    // Keep all Images in array
+    //array with images
     public Integer[] mThumbIds = {
             R.drawable.amsterdam, R.drawable.arena, R.drawable.beeren/*, 
             R.drawable.bilbao, R.drawable.bohnen, R.drawable.boule,
@@ -31,7 +31,7 @@ public class ImageAdapter extends BaseAdapter {
             */
     };
  
-    // Constructor
+    // constructor
     public ImageAdapter(Context c){
         mContext = c;
     }
