@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.NavUtils;
-import android.support.v4.view.ViewPager;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentActivity;
+//import android.support.v4.app.FragmentManager;
+//import android.support.v4.app.FragmentPagerAdapter;
+//import android.support.v4.app.NavUtils;
+//import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +22,9 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity {
+import android.app.Activity;
+
+public class MainActivity extends Activity {
 
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -32,13 +34,13 @@ public class MainActivity extends FragmentActivity {
 	 * intensive, it may be best to switch to a
 	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
 	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
+	//SectionsPagerAdapter mSectionsPagerAdapter;
 	FilterDialog dialog;
 
 	/**
 	 * The {@link ViewPager} that will host the section contents.
 	 */
-	ViewPager mViewPager;
+	//ViewPager mViewPager;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,13 +49,31 @@ public class MainActivity extends FragmentActivity {
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
+		/*
 		mSectionsPagerAdapter = new SectionsPagerAdapter(
 				getSupportFragmentManager());
 
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 		mViewPager.setAdapter(mSectionsPagerAdapter);
+		*/
 		dialog = new FilterDialog(this);
+		
+		GridView imageView = (GridView) findViewById(R.id.grid_view);
+		imageView.setAdapter(new ImageAdapter(this));
+		
+        imageView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                    int position, long id) {
+ 
+                // Sending image id to FullScreenActivity
+                Intent i = new Intent(getApplicationContext(), ViewFullScreenActivity.class);
+                // passing array index
+                i.putExtra("id", position);
+                startActivity(i);
+            }
+        });
 
 	}
 
@@ -80,6 +100,7 @@ public class MainActivity extends FragmentActivity {
 	 * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
 	 * one of the sections/tabs/pages.
 	 */
+	/*
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 		public SectionsPagerAdapter(FragmentManager fm) {
@@ -117,16 +138,15 @@ public class MainActivity extends FragmentActivity {
 			return null;
 		}
 	}
+	*/
 
 	/**
 	 * A dummy fragment representing a section of the app, but that simply
 	 * displays dummy text.
 	 */
+	/*
 	public static class DummySectionFragment extends Fragment {
-		/**
-		 * The fragment argument representing the section number for this
-		 * fragment.
-		 */
+		
 		public static final String ARG_SECTION_NUMBER = "section_number";
 
 		public DummySectionFragment() {
@@ -136,7 +156,7 @@ public class MainActivity extends FragmentActivity {
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
 
-			GridView imageView = new GridView(getActivity());
+			GridView imageView = (GridView) getActivity().findViewById(R.id.grid_view);
 			imageView.setAdapter(new ImageAdapter(getActivity()));
 			
 	        imageView.setOnItemClickListener(new OnItemClickListener() {
@@ -155,5 +175,6 @@ public class MainActivity extends FragmentActivity {
 			return imageView;
 		}
 	}
+*/
 
 }
